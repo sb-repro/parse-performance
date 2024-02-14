@@ -49,10 +49,12 @@ const parseTemplateWithReplaceReplacer = (
     theme,
   });
 
-  const string = templateString.replace(/\{([^"{}]*)}/g, (_, placeholder) => {
+  const string = templateString.replace(/{([^{}]+)}/g, (_, placeholder) => {
     const value = selectedThemeColorVariables[placeholder];
     return value || `{${placeholder}}`;
   });
+
+  console.log(string);
 
   return JSON.parse(string).body.items;
 };
